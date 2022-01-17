@@ -1,97 +1,26 @@
-# Laravel With Livewire 
+# Laravel With API
 
 ### Installation:
 
 Install through Composer
 
 ```
-composer require livewire/livewire
-```
+$ composer create-project --prefer-dist laravel/laravel managerUsers "5.8.*"
 
-Include the JavaScript (on every page that will be using Livewire).
+$ composer require laravel/passport:7.5.1
 
-```
-...
-    @livewireStyles
-</head>
-<body>
-    ...
- 
-    @livewireScripts
-</body>
-</html>
-```
+$ php artisan migrate
 
-### Create a component
+$ php artisan passport:install
 
-**Run the following command to generate a new Livewire component called counter.**
+$ php artisan make:migration create_contacts_table
 
-`php artisan make:livewire counter`
+$ composer require lcobucci/jwt=3.3.3
 
-**Running this command will generate the following files: app/Http/Livewire/Counter.php**
+$ php artisan make:controller AutenticadorControlador
 
-```
-namespace App\Http\Livewire;
- 
-use Livewire\Component;
- 
-class Counter extends Component
-{
-    public function render()
-    {
-        return view('livewire.counter');
-    }
-}
-```
+$ php artisan make:controller ContactsController
 
-**And generate the following files: resources/views/livewire/counter.blade.php**
+$ php artisan make:model Contact --migration
 
-```
-<div>
-    <h1>Hello World!</h1>
-</div>
-```
-
-### Include the component
-**Think of Livewire components like Blade includes. You can insert <livewire:some-component /> anywhere in a Blade view and it will render.**
-
-```
-<head>
-    ...
-    @livewireStyles
-</head>
-<body>
-    <livewire:counter /> 
- 
-    ...
- 
-    @livewireScripts
-</body>
-</html>
-```
-### Add "counter" functionality
-**Replace the generated content of the counter component class and view with the following: app/Http/Livewire/Counter.php**
-```
-class Counter extends Component
-{
-    public $count = 0;
- 
-    public function increment()
-    {
-        $this->count++;
-    }
- 
-    public function render()
-    {
-        return view('livewire.counter');
-    }
-}
-```
-
-**Replace the generated content of the counter component class and view with the following: resources/views/livewire/counter.blade.php**
-```
-<div style="text-align: center">
-    <button wire:click="increment">+</button>
-    <h1>{{ $count }}</h1>
-</div>
 ```
